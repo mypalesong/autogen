@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkautogen_guide=globalThis.webpackChunkautogen_guide||[]).push([[6936],{5841(e){e.exports=JSON.parse('{"tags":[{"label":"autogen","permalink":"/autogen/blog/tags/autogen","count":1},{"label":"introduction","permalink":"/autogen/blog/tags/introduction","count":1},{"label":"welcome","permalink":"/autogen/blog/tags/welcome","count":1}]}')}}]);

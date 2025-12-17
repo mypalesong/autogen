@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkautogen_guide=globalThis.webpackChunkautogen_guide||[]).push([[7472],{5513(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"AutoGen Guide\uc5d0 \uc624\uc2e0 \uac83\uc744 \ud658\uc601\ud569\ub2c8\ub2e4","permalink":"/autogen/en/blog/welcome","unlisted":false,"date":"2024-12-17T00:00:00.000Z"}]}')}}]);

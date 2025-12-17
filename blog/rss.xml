@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>AutoGen Guide Blog</title>
+        <link>https://mypalesong.github.io/autogen/blog</link>
+        <description>AutoGen Guide Blog</description>
+        <lastBuildDate>Tue, 17 Dec 2024 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>ko</language>
+        <item>
+            <title><![CDATA[AutoGen Guide에 오신 것을 환영합니다]]></title>
+            <link>https://mypalesong.github.io/autogen/blog/welcome</link>
+            <guid>https://mypalesong.github.io/autogen/blog/welcome</guid>
+            <pubDate>Tue, 17 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Microsoft AutoGen 프레임워크를 활용한 프로덕션 레벨 멀티 에이전트 AI 시스템 구축 가이드입니다.]]></description>
+            <content:encoded><![CDATA[<p>Microsoft AutoGen 프레임워크를 활용한 프로덕션 레벨 멀티 에이전트 AI 시스템 구축 가이드입니다.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="이-가이드의-목적">이 가이드의 목적<a href="https://mypalesong.github.io/autogen/blog/welcome#%EC%9D%B4-%EA%B0%80%EC%9D%B4%EB%93%9C%EC%9D%98-%EB%AA%A9%EC%A0%81" class="hash-link" aria-label="이 가이드의 목적에 대한 직접 링크" title="이 가이드의 목적에 대한 직접 링크" translate="no">​</a></h2>
+<p>이 가이드는 AutoGen을 실제 프로덕션 환경에서 활용하고자 하는 개발자와 팀을 위해 만들어졌습니다.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="다루는-내용">다루는 내용<a href="https://mypalesong.github.io/autogen/blog/welcome#%EB%8B%A4%EB%A3%A8%EB%8A%94-%EB%82%B4%EC%9A%A9" class="hash-link" aria-label="다루는 내용에 대한 직접 링크" title="다루는 내용에 대한 직접 링크" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Core Concepts</strong>: AutoGen의 핵심 개념과 구성 요소</li>
+<li class=""><strong>Production Patterns</strong>: 프로덕션 환경에서의 모범 사례</li>
+<li class=""><strong>Real-World Examples</strong>: 실제 응용 사례와 구현 예제</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="대상-독자">대상 독자<a href="https://mypalesong.github.io/autogen/blog/welcome#%EB%8C%80%EC%83%81-%EB%8F%85%EC%9E%90" class="hash-link" aria-label="대상 독자에 대한 직접 링크" title="대상 독자에 대한 직접 링크" translate="no">​</a></h3>
+<ul>
+<li class="">AI/ML 엔지니어</li>
+<li class="">백엔드 개발자</li>
+<li class="">솔루션 아키텍트</li>
+<li class="">기술 리더</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="시작하기">시작하기<a href="https://mypalesong.github.io/autogen/blog/welcome#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0" class="hash-link" aria-label="시작하기에 대한 직접 링크" title="시작하기에 대한 직접 링크" translate="no">​</a></h2>
+<p><a class="" href="https://mypalesong.github.io/autogen/docs/intro">Getting Started</a> 문서에서 AutoGen의 기본 설정부터 시작해보세요.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="피드백">피드백<a href="https://mypalesong.github.io/autogen/blog/welcome#%ED%94%BC%EB%93%9C%EB%B0%B1" class="hash-link" aria-label="피드백에 대한 직접 링크" title="피드백에 대한 직접 링크" translate="no">​</a></h2>
+<p>이 가이드에 대한 피드백이나 제안이 있으시면 GitHub Issues를 통해 알려주세요!</p>]]></content:encoded>
+            <category>autogen</category>
+            <category>introduction</category>
+            <category>welcome</category>
+        </item>
+    </channel>
+</rss>
