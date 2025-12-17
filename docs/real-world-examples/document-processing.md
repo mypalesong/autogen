@@ -4,21 +4,71 @@ sidebar_position: 4
 
 # 문서 처리 시스템
 
+![Document Processing](https://images.unsplash.com/photo-1568667256549-094345857637?w=1200&h=400&fit=crop&q=80)
+
 AutoGen을 활용한 지능형 문서 분석 및 처리 시스템 구축 사례입니다.
 
 ## 시스템 개요
 
+```mermaid
+flowchart TB
+    subgraph Input[" 📄 Input"]
+        Doc[Document Ingestion<br/>PDF, DOCX, HTML]
+    end
+
+    subgraph Processing[" 🔄 Processing Pipeline"]
+        Parser[📑 Parser Agent<br/>구조 분석]
+        Analyzer[🔎 Analyzer Agent<br/>내용 분석]
+        Extractor[📤 Extractor Agent<br/>정보 추출]
+        Summary[📝 Summary Agent<br/>요약 생성]
+    end
+
+    subgraph Output[" 📊 Output"]
+        Result[Processed Document<br/>구조화된 데이터]
+    end
+
+    Doc --> Parser
+    Parser --> Analyzer
+    Parser --> Extractor
+    Analyzer --> Summary
+    Extractor --> Result
+    Summary --> Result
+
+    style Doc fill:#6366f1,stroke:#4338ca,color:#fff
+    style Parser fill:#3b82f6,stroke:#1e40af,color:#fff
+    style Analyzer fill:#8b5cf6,stroke:#6d28d9,color:#fff
+    style Extractor fill:#22c55e,stroke:#15803d,color:#fff
+    style Summary fill:#f59e0b,stroke:#d97706,color:#fff
+    style Result fill:#ec4899,stroke:#be185d,color:#fff
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Document  │────▶│   Parser    │────▶│  Analyzer   │
-│   Ingestion │     │   Agent     │     │   Agent     │
-└─────────────┘     └─────────────┘     └─────────────┘
-                           │                   │
-                           ▼                   ▼
-                    ┌─────────────┐     ┌─────────────┐
-                    │   Extractor │     │   Summary   │
-                    │   Agent     │     │   Agent     │
-                    └─────────────┘     └─────────────┘
+
+### 문서 처리 흐름
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant I as Document Ingestion
+    participant P as Parser Agent
+    participant A as Analyzer Agent
+    participant E as Extractor Agent
+    participant S as Summary Agent
+
+    U->>I: 문서 업로드
+    I->>P: 원본 문서 전달
+    P->>P: 구조 파싱
+
+    par 병렬 처리
+        P->>A: 텍스트 내용
+        A->>A: 주제/감정 분석
+    and
+        P->>E: 구조화된 데이터
+        E->>E: 엔티티 추출
+    end
+
+    A->>S: 분석 결과
+    E->>S: 추출 데이터
+    S->>S: 요약 생성
+    S-->>U: 처리 완료 (JSON)
 ```
 
 ## 에이전트 구현

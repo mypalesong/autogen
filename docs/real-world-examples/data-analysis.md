@@ -4,21 +4,61 @@ sidebar_position: 2
 
 # 데이터 분석 파이프라인
 
+![Data Analysis Pipeline](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop&q=80)
+
 AutoGen을 활용한 자동화된 데이터 분석 시스템 구축 사례입니다.
 
 ## 시스템 아키텍처
 
+```mermaid
+flowchart LR
+    subgraph Pipeline[" 📊 Data Analysis Pipeline"]
+        direction LR
+        Data[📁 Data Agent<br/>데이터 로드]
+        Analyst[📈 Analyst Agent<br/>분석 수행]
+        Visualizer[🎨 Visualizer Agent<br/>시각화]
+        Report[📝 Report Agent<br/>리포트 생성]
+    end
+
+    subgraph Executor[" ⚙️ Execution"]
+        Code[Code Executor<br/>Python 실행]
+    end
+
+    Data --> Analyst --> Visualizer --> Report
+    Data <-.-> Code
+    Analyst <-.-> Code
+    Visualizer <-.-> Code
+    Report <-.-> Code
+
+    style Data fill:#3b82f6,stroke:#1e40af,color:#fff
+    style Analyst fill:#8b5cf6,stroke:#6d28d9,color:#fff
+    style Visualizer fill:#ec4899,stroke:#be185d,color:#fff
+    style Report fill:#22c55e,stroke:#15803d,color:#fff
+    style Code fill:#f59e0b,stroke:#d97706,color:#fff
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Data      │────▶│   Analyst   │────▶│  Visualizer │────▶│   Report    │
-│   Agent     │     │   Agent     │     │   Agent     │     │   Agent     │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │                   │
-       └───────────────────┴───────────────────┴───────────────────┘
-                                    │
-                           ┌────────▼────────┐
-                           │  Code Executor  │
-                           └─────────────────┘
+
+### 분석 워크플로우
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant D as Data Agent
+    participant A as Analyst Agent
+    participant V as Visualizer Agent
+    participant R as Report Agent
+    participant E as ⚙️ Executor
+
+    U->>D: 분석 요청
+    D->>E: 데이터 로드 코드
+    E-->>D: 데이터 반환
+    D->>A: 정제된 데이터 전달
+    A->>E: 분석 코드 실행
+    E-->>A: 분석 결과
+    A->>V: 분석 결과 전달
+    V->>E: 시각화 코드
+    E-->>V: 차트 생성
+    V->>R: 시각화 결과 전달
+    R-->>U: 최종 리포트
 ```
 
 ## 에이전트 구현

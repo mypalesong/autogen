@@ -5,19 +5,82 @@ slug: /intro
 
 # AutoGen Guide
 
+![AutoGen Multi-Agent Systems](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=400&fit=crop&q=80)
+
 Microsoft AutoGen은 **다중 에이전트 대화 시스템**을 구축하기 위한 오픈소스 프레임워크입니다. 이 가이드는 AutoGen을 사용하여 프로덕션 레벨의 AI 애플리케이션을 구축하는 방법을 상세히 다룹니다.
+
+## AutoGen 아키텍처 개요
+
+```mermaid
+flowchart TB
+    subgraph User["👤 User"]
+        Request[Request]
+    end
+
+    subgraph AutoGen["🤖 AutoGen Framework"]
+        subgraph Agents["Agent Pool"]
+            AA[AssistantAgent]
+            UA[UserProxyAgent]
+            CA[Custom Agents]
+        end
+
+        subgraph Orchestration["Orchestration Layer"]
+            GC[GroupChat]
+            GM[GroupChatManager]
+        end
+
+        subgraph Execution["Execution Environment"]
+            CE[Code Executor]
+            Docker[Docker Container]
+        end
+    end
+
+    subgraph LLM["🧠 LLM Providers"]
+        OpenAI[OpenAI]
+        Azure[Azure OpenAI]
+        Claude[Anthropic]
+        Local[Local LLMs]
+    end
+
+    Request --> AA
+    AA <--> UA
+    AA <--> CA
+    Agents --> Orchestration
+    UA --> CE
+    CE --> Docker
+    Agents <--> LLM
+```
 
 ## AutoGen이란?
 
 AutoGen은 다음과 같은 핵심 기능을 제공합니다:
 
-- **다중 에이전트 오케스트레이션**: 여러 AI 에이전트가 협력하여 복잡한 작업을 수행
-- **대화 기반 워크플로우**: 에이전트 간 구조화된 대화를 통한 작업 처리
-- **유연한 에이전트 타입**: AssistantAgent, UserProxyAgent, GroupChat 등 다양한 에이전트
-- **코드 실행 지원**: 안전한 환경에서 코드 생성 및 실행
-- **Human-in-the-Loop**: 필요시 사람의 개입을 허용하는 워크플로우
+| 기능 | 설명 |
+|------|------|
+| 🤖 **다중 에이전트 오케스트레이션** | 여러 AI 에이전트가 협력하여 복잡한 작업을 수행 |
+| 💬 **대화 기반 워크플로우** | 에이전트 간 구조화된 대화를 통한 작업 처리 |
+| 🔧 **유연한 에이전트 타입** | AssistantAgent, UserProxyAgent, GroupChat 등 |
+| 💻 **코드 실행 지원** | 안전한 환경에서 코드 생성 및 실행 |
+| 👥 **Human-in-the-Loop** | 필요시 사람의 개입을 허용하는 워크플로우 |
 
 ## 왜 AutoGen인가?
+
+```mermaid
+graph LR
+    subgraph Traditional["기존 LLM 접근"]
+        A1[단일 프롬프트] --> A2[단일 응답]
+    end
+
+    subgraph AutoGen["AutoGen 접근"]
+        B1[복잡한 작업] --> B2[Developer Agent]
+        B2 --> B3[Reviewer Agent]
+        B3 --> B4[Tester Agent]
+        B4 --> B5[완성된 결과물]
+        B3 -.->|피드백| B2
+    end
+
+    style AutoGen fill:#1e3a8a,stroke:#60a5fa,color:#fff
+```
 
 ### 1. 복잡한 작업의 분해
 
@@ -47,6 +110,22 @@ pip install pyautogen
 ## 빠른 시작
 
 가장 간단한 2-에이전트 대화 예제:
+
+```mermaid
+sequenceDiagram
+    participant User as 👤 User
+    participant Proxy as UserProxyAgent
+    participant Assistant as AssistantAgent
+    participant LLM as 🧠 LLM
+
+    User->>Proxy: "피보나치 함수 작성해줘"
+    Proxy->>Assistant: initiate_chat()
+    Assistant->>LLM: Generate code
+    LLM-->>Assistant: Python code
+    Assistant-->>Proxy: Code response
+    Proxy->>Proxy: Execute code
+    Proxy-->>User: Result
+```
 
 ```python
 from autogen import AssistantAgent, UserProxyAgent
@@ -79,7 +158,25 @@ user_proxy.initiate_chat(
 
 ## 가이드 구성
 
-이 가이드는 다음과 같은 섹션으로 구성되어 있습니다:
+```mermaid
+mindmap
+  root((AutoGen Guide))
+    Core Concepts
+      에이전트 타입
+      대화 패턴
+      LLM 설정
+      코드 실행
+    Production Patterns
+      에러 핸들링
+      비용 관리
+      로깅/모니터링
+      확장성
+    Real-World Examples
+      고객 서비스
+      데이터 분석
+      소프트웨어 개발
+      문서 처리
+```
 
 ### Core Concepts
 - [에이전트 타입](/docs/core-concepts/agent-types) - 다양한 에이전트의 역할과 사용법

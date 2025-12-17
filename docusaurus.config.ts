@@ -25,8 +25,10 @@ const config: Config = {
 
   markdown: {
     format: 'detect',
-    mermaid: false,
+    mermaid: true,
   },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   i18n: {
     defaultLocale: 'ko',
@@ -149,6 +151,9 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.vsDark,
       additionalLanguages: ['python', 'bash', 'json', 'yaml'],
+    },
+    mermaid: {
+      theme: {light: 'neutral', dark: 'dark'},
     },
     algolia: undefined,
   } satisfies Preset.ThemeConfig,

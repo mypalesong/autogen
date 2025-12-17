@@ -4,27 +4,70 @@ sidebar_position: 1
 
 # 고객 서비스 자동화
 
+![Customer Service Automation](https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=1200&h=400&fit=crop&q=80)
+
 AutoGen을 활용한 지능형 고객 서비스 시스템 구축 사례입니다.
 
 ## 아키텍처 개요
 
+```mermaid
+flowchart TB
+    subgraph Customer["👤 Customer"]
+        Request[Customer Inquiry]
+    end
+
+    subgraph Gateway["🌐 API Gateway"]
+        Router[Agent Router]
+    end
+
+    subgraph Agents["🤖 Agent Pool"]
+        Triage[Triage Agent<br/>문의 분류]
+        Support[Support Agent<br/>일반 지원]
+        Escalation[Escalation Agent<br/>에스컬레이션]
+    end
+
+    subgraph Backend["💾 Backend"]
+        KB[(Knowledge Base)]
+        DB[(Ticket DB)]
+    end
+
+    Request --> Router
+    Router --> Triage
+    Triage -->|일반 문의| Support
+    Triage -->|긴급/복잡| Escalation
+    Support <--> KB
+    Escalation <--> KB
+    Support --> DB
+    Escalation --> DB
+
+    style Triage fill:#3b82f6,stroke:#1e40af,color:#fff
+    style Support fill:#22c55e,stroke:#15803d,color:#fff
+    style Escalation fill:#ef4444,stroke:#b91c1c,color:#fff
 ```
-┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
-│   Customer  │────▶│  API Gateway │────▶│  Agent Router   │
-└─────────────┘     └──────────────┘     └────────┬────────┘
-                                                  │
-                    ┌─────────────────────────────┼─────────────────────────────┐
-                    │                             │                             │
-              ┌─────▼─────┐              ┌────────▼───────┐            ┌────────▼────────┐
-              │  Triage   │              │  Support Agent │            │ Escalation Agent│
-              │   Agent   │              │                │            │                 │
-              └───────────┘              └────────────────┘            └─────────────────┘
-                    │                             │                             │
-                    └─────────────────────────────┴─────────────────────────────┘
-                                                  │
-                                         ┌────────▼────────┐
-                                         │  Knowledge Base │
-                                         └─────────────────┘
+
+## 문의 처리 흐름
+
+```mermaid
+sequenceDiagram
+    participant C as 👤 Customer
+    participant T as Triage Agent
+    participant S as Support Agent
+    participant E as Escalation Agent
+    participant K as 📚 Knowledge Base
+
+    C->>T: 문의 접수
+    T->>T: 분류 (카테고리, 우선순위, 감정)
+
+    alt 일반 문의
+        T->>S: 지원 요청
+        S->>K: 관련 정보 검색
+        K-->>S: 검색 결과
+        S-->>C: 해결책 제공
+    else 긴급/복잡 문의
+        T->>E: 에스컬레이션
+        E->>E: 티켓 생성
+        E-->>C: 에스컬레이션 안내
+    end
 ```
 
 ## 에이전트 구현

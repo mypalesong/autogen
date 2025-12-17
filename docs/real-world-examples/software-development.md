@@ -4,22 +4,68 @@ sidebar_position: 3
 
 # 소프트웨어 개발 워크플로우
 
+![Software Development](https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=400&fit=crop&q=80)
+
 AutoGen을 활용한 AI 지원 소프트웨어 개발 시스템 구축 사례입니다.
 
 ## 개발 워크플로우 아키텍처
 
+```mermaid
+flowchart LR
+    subgraph DevTeam[" 👥 AI Development Team"]
+        direction LR
+        PM[📋 Product Manager<br/>요구사항 분석]
+        Dev[💻 Developer Agent<br/>코드 작성]
+        Review[🔍 Reviewer Agent<br/>코드 리뷰]
+        Test[🧪 Tester Agent<br/>테스트 작성]
+    end
+
+    subgraph CICD[" ⚙️ CI/CD"]
+        Exec[Code Executor<br/>Tests & Lint]
+    end
+
+    PM --> Dev --> Review --> Test
+    Dev <-.-> Exec
+    Review <-.-> Exec
+    Test <-.-> Exec
+
+    style PM fill:#3b82f6,stroke:#1e40af,color:#fff
+    style Dev fill:#22c55e,stroke:#15803d,color:#fff
+    style Review fill:#f59e0b,stroke:#d97706,color:#fff
+    style Test fill:#8b5cf6,stroke:#6d28d9,color:#fff
+    style Exec fill:#ef4444,stroke:#b91c1c,color:#fff
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Product   │────▶│  Developer  │────▶│  Reviewer   │────▶│   Tester    │
-│   Manager   │     │   Agent     │     │   Agent     │     │   Agent     │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │                   │
-       └───────────────────┴───────────────────┴───────────────────┘
-                                    │
-                           ┌────────▼────────┐
-                           │  Code Executor  │
-                           │  (Tests & Lint) │
-                           └─────────────────┘
+
+### 개발 프로세스 흐름
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant PM as Product Manager
+    participant D as Developer
+    participant R as Reviewer
+    participant T as Tester
+    participant E as ⚙️ Executor
+
+    U->>PM: 기능 요청
+    PM->>PM: 요구사항 분석
+    PM->>D: 유저 스토리 전달
+
+    loop 개발 사이클
+        D->>E: 코드 작성 & 실행
+        E-->>D: 실행 결과
+        D->>R: 코드 리뷰 요청
+        R->>R: 코드 검토
+        alt 수정 필요
+            R->>D: 피드백 전달
+        else 승인
+            R->>T: 테스트 요청
+        end
+    end
+
+    T->>E: 테스트 실행
+    E-->>T: 테스트 결과
+    T-->>U: 완료 보고
 ```
 
 ## 에이전트 구현
