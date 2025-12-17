@@ -1,0 +1,8 @@
+{
+  "label": "Real-World Examples",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "실제 프로덕션 환경에서 활용할 수 있는 AutoGen 응용 사례들입니다. 고객 서비스, 데이터 분석, 소프트웨어 개발 등의 실전 예제를 제공합니다."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Production Patterns",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "프로덕션 환경에서 AutoGen을 안정적으로 운영하기 위한 패턴들입니다. 에러 핸들링, 비용 관리, 로깅, 확장성 등을 다룹니다."
+  }
+}
